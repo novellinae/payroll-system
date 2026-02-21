@@ -86,15 +86,6 @@ Protected with Row Level Security (RLS).
 
 ---
 
-## ⚙️ Environment Variables
-
-Create a `.env.local` file:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
 ## 📦 Installation & Setup
 1. Clone the repository:
    ```bash
@@ -110,6 +101,16 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    npm run dev
    ```
 4. Access the app at `http://localhost:3000`
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env.local` file:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
 ## 📸 Screenshots
 
