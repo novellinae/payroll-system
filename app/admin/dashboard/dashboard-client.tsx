@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { getDashboardData } from "./action"
-import { Box, Divider, Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography } from "@mui/material"
 import MonthSelector from "@/ui/monthselector"
 import { DashboardSummary, EmployeeMiniTable } from "./types"
 import InsightCard from "@/ui/kpicard"
@@ -13,13 +13,19 @@ import RecentEmployeesTable from "@/ui/mini-emp-table"
 interface DashboardClientProps {
     initialData: DashboardSummary
     recentEmployees: EmployeeMiniTable[]
+    initialMonth: number
+    initialYear: number
 }
 
 
-export default function DashboardClient({initialData, recentEmployees}: DashboardClientProps) {
-    const now = new Date()
-    const [month, setMonth] = useState(now.getMonth() + 1)
-    const [year] = useState(now.getFullYear())
+export default function DashboardClient({
+    initialData,
+    recentEmployees,
+    initialMonth,
+    initialYear,
+}: DashboardClientProps) {
+    const [month, setMonth] = useState(initialMonth)
+    const [year] = useState(initialYear)
     const [data, setData] = useState<DashboardSummary>(initialData)
 
 

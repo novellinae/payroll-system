@@ -44,8 +44,8 @@ export default function DashboardLayoutClient({
                 {/* Sidebar */}
                 <Drawer variant="permanent">
                     <Box sx={{
-                        width: 240,
-                        flexShrink: 0,
+                            width: 240,
+                            flexShrink: 0,
                         }}>
                         <Typography variant="h6" sx={{p:2}}>
                             Payroll System
@@ -58,7 +58,7 @@ export default function DashboardLayoutClient({
                             <ListItemButton onClick={() => router.push(role === "admin" ? "/admin/employee" : "/employees/employee")}>
                                 <ListItemText primary="Employees" />
                             </ListItemButton>
-                            <ListItemButton onClick={() => router.push("/employees/payroll")}>
+                            <ListItemButton onClick={() => router.push(role === "admin" ? "/admin/payroll" : "/employees/payroll")}>
                                 <ListItemText primary="Payroll" />
                             </ListItemButton>
                             

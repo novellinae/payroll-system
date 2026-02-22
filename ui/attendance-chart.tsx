@@ -1,3 +1,4 @@
+"use client"
 import { AttendanceSummary } from "@/app/admin/dashboard/types"
 import { PieChart } from "@mui/x-charts"
 

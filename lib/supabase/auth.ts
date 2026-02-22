@@ -1,7 +1,6 @@
 "use server"
 
 import { createSupabaseServer } from "./server"
-import { createSupabaseClient } from "./client"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 
@@ -38,12 +37,9 @@ export async function signIn(email: string, password: string) {
 }
 
 export async function signInWithGoogle() {
-    const supabase = await createSupabaseClient()
+    const supabase = await createSupabaseServer()
     const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-            redirectTo: `${location.origin}/admin/dashboard`
-        }
+        provider: "google"
     })
     if (error) {
         console.error("Google login error:", error)
