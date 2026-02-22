@@ -21,6 +21,9 @@ interface AdminPayrollDetail {
     status: string | null
     employees: PayrollEmployee | null
     payroll_periods: PayrollPeriod | null
+    payslips: {
+        file_path: string | null
+    }[] | null
 }
 
 
@@ -34,7 +37,7 @@ export default async function EditPayrollPage({
 
     const {data: payroll} = await supabase
     .from("payrolls")
-    .select("*, employees:payrolls_employee_id_fkey(first_name, last_name), payroll_periods:payrolls_period_id_fkey(month, year)")
+    .select("*, employees:payrolls_employee_id_fkey(first_name, last_name), payroll_periods:payrolls_period_id_fkey(month, year), payslips(file_path)")
     .eq("id", id)
     .single<AdminPayrollDetail>()
 
@@ -65,6 +68,7 @@ export default async function EditPayrollPage({
                     initialDeduction={payroll.deduction ?? 0}
                     initialTax={payroll.tax ?? 0}
                     initialStatus={payroll.status ?? "draft"}
+                    initialPayslipPath={payroll.payslips?.[0]?.file_path ?? null}
                 />
             </Box>
         </Box>

@@ -19,6 +19,9 @@ interface EmployeePayrollRow {
     deduction: number | null
     status: string | null
     payroll_periods: PayrollPeriod | null
+    payslips: {
+        file_path: string | null
+    }[] | null
 }
 
 interface EmployeeRecord {
@@ -62,6 +65,9 @@ export default async function EmployeePayrollPage() {
         bonus,
         deduction,
         status,
+                payslips (
+                    file_path
+                ),
         payroll_periods:payrolls_period_id_fkey (
         month,
         year
@@ -72,13 +78,21 @@ export default async function EmployeePayrollPage() {
     .returns<EmployeePayrollRow[]>()
     .order("created_at", { ascending: false })
 
+    const payrollRows: EmployeePayrollRow[] = (payrolls ?? []).map((row) => ({
+        ...row,
+        payslips:
+            row.payslips && row.payslips.length > 0
+                ? row.payslips
+                : [{ file_path: `${employee.id}/${row.id}.pdf` }],
+    }))
+
 
     return (
         <Box sx={{ p: 4 }}>
             <Typography variant="h5" fontWeight={600} mb={3}>
                 My Payroll
             </Typography>
-            <PayrollTable data={payrolls ?? []} />
+            <PayrollTable data={payrollRows} />
     </Box>
   )
 }

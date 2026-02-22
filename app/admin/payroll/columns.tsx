@@ -7,6 +7,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deletePayroll } from "./action";
+import PayrollPreview from "@/ui/preview-payroll";
 
 
 
@@ -27,6 +28,9 @@ export type Payroll = {
         month: number
         year: number
     };
+    payslips: {
+        file_path: string | null
+    }[] | null
 };
 
 
@@ -62,6 +66,7 @@ export const columns: ColumnDef<Payroll>[] = [
         cell: ({row}) => {
             const id = row.original.id
             const isPaid = row.original.status === "paid"
+            const filePath = row.original.payslips?.[0]?.file_path ?? null
             return (
                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                     <IconButton
@@ -70,6 +75,8 @@ export const columns: ColumnDef<Payroll>[] = [
                     >
                         <EditIcon />
                     </IconButton>
+
+                    <PayrollPreview filePath={filePath} />
                     
                     <form action={deletePayroll.bind(null, id)} style={{ display: "inline-flex" }} onSubmit={(e) => {
                         if (isPaid) {

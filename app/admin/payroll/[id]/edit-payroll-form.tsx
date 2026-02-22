@@ -1,8 +1,9 @@
 "use client"
 
 import { updatePayroll } from "../action"
-import { Button, MenuItem, TextField } from "@mui/material"
-import { useMemo, useState } from "react"
+import PayrollPreview from "@/ui/preview-payroll"
+import { Button, Dialog, DialogContent, DialogTitle, MenuItem, Stack, TextField } from "@mui/material"
+import { useEffect, useMemo, useState } from "react"
 
 export default function EditPayrollForm({
   payrollId,
@@ -11,6 +12,7 @@ export default function EditPayrollForm({
   initialDeduction,
   initialTax,
   initialStatus,
+  initialPayslipPath,
 }: {
   payrollId: string
   initialGrossSalary: number
@@ -18,12 +20,15 @@ export default function EditPayrollForm({
   initialDeduction: number
   initialTax: number
   initialStatus: string
+  initialPayslipPath?: string | null
 }) {
   const [grossSalary, setGrossSalary] = useState(String(initialGrossSalary ?? 0))
   const [bonus, setBonus] = useState(String(initialBonus ?? 0))
   const [deduction, setDeduction] = useState(String(initialDeduction ?? 0))
   const [tax, setTax] = useState(String(initialTax ?? 0))
   const [status, setStatus] = useState(initialStatus || "draft")
+  const [selectedPayslip, setSelectedPayslip] = useState<File | null>(null)
+  const [previewOpen, setPreviewOpen] = useState(false)
 
   const netSalary = useMemo(() => {
     const gross = Number(grossSalary) || 0
@@ -32,6 +37,19 @@ export default function EditPayrollForm({
     const taxValue = Number(tax) || 0
     return gross + bonusValue - deductionValue - taxValue
   }, [grossSalary, bonus, deduction, tax])
+
+  const selectedPayslipUrl = useMemo(() => {
+    if (!selectedPayslip) return null
+    return URL.createObjectURL(selectedPayslip)
+  }, [selectedPayslip])
+
+  useEffect(() => {
+    return () => {
+      if (selectedPayslipUrl) {
+        URL.revokeObjectURL(selectedPayslipUrl)
+      }
+    }
+  }, [selectedPayslipUrl])
 
   return (
     <form
@@ -101,9 +119,48 @@ export default function EditPayrollForm({
         <MenuItem value="paid">Paid</MenuItem>
       </TextField>
 
+      <Stack direction="row" spacing={1} alignItems="center">
+        {initialPayslipPath ? (
+          <PayrollPreview filePath={initialPayslipPath} buttonType="text" label="Preview Current PDF" />
+        ) : null}
+        <Button
+          type="button"
+          variant="outlined"
+          disabled={!selectedPayslipUrl}
+          onClick={() => setPreviewOpen(true)}
+        >
+          Preview Selected PDF
+        </Button>
+      </Stack>
+
+      <TextField
+        type="file"
+        name="payslip"
+        inputProps={{accept: "application/pdf"}}
+        onChange={(e) => {
+          const file = (e.currentTarget as HTMLInputElement).files?.[0] ?? null
+          setSelectedPayslip(file)
+        }}
+      />
+
       <Button type="submit" variant="contained">
         Update Payroll
       </Button>
+
+      <Dialog open={previewOpen} onClose={() => setPreviewOpen(false)} fullWidth maxWidth="md">
+        <DialogTitle>Payslip Preview</DialogTitle>
+        <DialogContent sx={{ height: 600 }}>
+          {selectedPayslipUrl && (
+            <iframe
+              src={selectedPayslipUrl}
+              width="100%"
+              height="100%"
+              style={{ border: "none" }}
+              title="Selected Payslip Preview"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </form>
   )
 }

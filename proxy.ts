@@ -34,7 +34,7 @@ export async function proxy(req:NextRequest) {
     const pathname = req.nextUrl.pathname
 
     if(pathname.startsWith("/admin") && role !== "admin"){
-        return NextResponse.redirect(new URL("/employees", req.url))
+        return NextResponse.redirect(new URL("/employees/dashboard", req.url))
     }
 
     if(pathname.startsWith("/employees") && !["employee", "admin"].includes(role)){

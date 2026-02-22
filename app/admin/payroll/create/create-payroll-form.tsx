@@ -33,6 +33,8 @@ export default function CreatePayrollForm({
   const [tax, setTax] = useState("0")
   const [status, setStatus] = useState("draft")
   const [periodModalOpen, setPeriodModalOpen] = useState(false)
+  const [selectedPayslip, setSelectedPayslip] = useState<File | null>(null)
+  const [previewOpen, setPreviewOpen] = useState(false)
 
   const [state, formAction] = useActionState(createPayroll, { error: null })
 
@@ -49,6 +51,19 @@ export default function CreatePayrollForm({
     const taxValue = Number(tax) || 0
     return gross + bonusValue - deductionValue - taxValue
   }, [grossSalary, bonus, deduction, tax])
+
+  const selectedPayslipUrl = useMemo(() => {
+    if (!selectedPayslip) return null
+    return URL.createObjectURL(selectedPayslip)
+  }, [selectedPayslip])
+
+  useEffect(() => {
+    return () => {
+      if (selectedPayslipUrl) {
+        URL.revokeObjectURL(selectedPayslipUrl)
+      }
+    }
+  }, [selectedPayslipUrl])
 
   return (
         <form
@@ -158,6 +173,25 @@ export default function CreatePayrollForm({
             <MenuItem value="paid">Paid</MenuItem>
         </TextField>
 
+        <TextField
+          type="file"
+          name="payslip"
+          inputProps={{accept: "application/pdf"}}
+          onChange={(e) => {
+            const file = (e.currentTarget as HTMLInputElement).files?.[0] ?? null
+            setSelectedPayslip(file)
+          }}
+        />
+
+        <Button
+          type="button"
+          variant="outlined"
+          disabled={!selectedPayslipUrl}
+          onClick={() => setPreviewOpen(true)}
+        >
+          Preview PDF
+        </Button>
+        
         <Button type="submit" variant="contained">
             Create Payroll
         </Button>
@@ -170,6 +204,21 @@ export default function CreatePayrollForm({
                 setPeriodModalOpen(false)
               }}
             />
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={previewOpen} onClose={() => setPreviewOpen(false)} fullWidth maxWidth="md">
+          <DialogTitle>Payslip Preview</DialogTitle>
+          <DialogContent sx={{ height: 600 }}>
+            {selectedPayslipUrl && (
+              <iframe
+                src={selectedPayslipUrl}
+                width="100%"
+                height="100%"
+                style={{ border: "none" }}
+                title="Selected Payslip Preview"
+              />
+            )}
           </DialogContent>
         </Dialog>
     </form>

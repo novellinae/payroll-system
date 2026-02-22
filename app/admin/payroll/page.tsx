@@ -75,6 +75,9 @@ export default async function PayrollAdminPage({
         id,
         month,
         year
+      ),
+      payslips (
+        file_path
       )
     `, {count: "exact"})
 

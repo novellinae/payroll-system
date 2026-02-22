@@ -1,30 +1,22 @@
-"use client"
+import { createSupabaseServer } from "@/lib/supabase/server"
+import { redirect } from "next/navigation"
 
-import { createSupabaseClient } from "@/lib/supabase/client";
-import { redirect } from "next/navigation";
-import { useEffect } from "react";
+export default async function Home() {
+  const supabase = await createSupabaseServer()
 
-export default function Home() {
-  useEffect(() => {
-    const supabase = createSupabaseClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-    async function test() {
-      const {data, error} = await supabase
-      .from("employees")
-      .select("*")
+  if (!user) {
+    redirect("/login")
+  }
 
-      console.log(data, error)
-    }
+  const role = user.user_metadata?.role ?? "employee"
 
-    test()
-  }, [])
-  
+  if (role === "admin") {
+    redirect("/admin/dashboard")
+  }
 
-  redirect("/admin/dashboard")
-
-  return (
-    <div>
-      Supabase Connected
-    </div>
-  );
+  redirect("/employees/dashboard")
 }

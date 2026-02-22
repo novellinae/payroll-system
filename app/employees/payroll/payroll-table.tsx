@@ -20,6 +20,9 @@ export type EmployeePayrollRow = {
     net_salary: number
     status: string | null
     payroll_periods: PayrollPeriod | null
+    payslips: {
+        file_path: string | null
+    }[] | null
 }
 
 const columnHelper = createColumnHelper<EmployeePayrollRow>()

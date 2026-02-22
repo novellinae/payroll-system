@@ -14,11 +14,16 @@ export default function Login() {
         e.preventDefault()
         try {
             setLoading(true)
-            await signIn(
+            const data = await signIn(
             email,
             password
             )
-            router.replace("/admin/dashboard")
+            const role = data.user?.user_metadata?.role
+            if (role === "admin") {
+                router.replace("/admin/dashboard")
+            } else {
+                router.replace("/employees/dashboard")
+            }
             
         } catch (error) {
             console.error("An unexpected error occurred. Please try again.", error)
