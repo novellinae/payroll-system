@@ -3,7 +3,8 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { randomUUID } from "crypto"
-import DashboardLayoutClient from "./layout-client"
+import DashboardLayoutClient from "../../ui/layout-client"
+
 
 
 export default async function DashboardLayout({

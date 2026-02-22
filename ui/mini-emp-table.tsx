@@ -77,7 +77,7 @@ export default function RecentEmployeesTable({
                 onClick={() => router.push("/admin/employee")}
                 sx={{
                     textTransform: "none",
-                    fontWeight: 500,
+                    fontWeight: 600,
                 }}
                 endIcon={<ArrowForwardIcon fontSize="small" />}
                 >

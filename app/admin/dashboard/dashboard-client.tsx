@@ -39,9 +39,9 @@ export default function DashboardClient({
     }, [month, year])
 
     return (
-        <Box maxWidth={"1400px"} mx={"auto"} px={4} py={2}>
+        <Box maxWidth={"1400px"} mx={"auto"} px={4} py={4}>
             <Box display="flex" justifyContent= "space-between" mb={3} alignItems= "center">
-                <Typography variant="h4" fontWeight={700}>
+                <Typography variant="h4" fontWeight={600}>
                     Admin Dashboard
                 </Typography>
                 <MonthSelector month={month} onChange={setMonth}/>

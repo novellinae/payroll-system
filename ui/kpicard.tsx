@@ -17,7 +17,7 @@ export default function InsightCard({
                     {title}
                 </Typography>
                 <Box mt={1}>
-                    <Typography variant="h4" fontWeight={700} mt={1} textAlign={"center"}>
+                    <Typography variant="h4" fontWeight={600} mt={1} textAlign={"center"}>
                         {value}
                     </Typography>
                 </Box>

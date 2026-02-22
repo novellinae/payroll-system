@@ -18,9 +18,9 @@ export default async function CreatePayrollPage(){
     .order("year", {ascending: false})
     
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%", py: 4}}>
             <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant="h5" fontWeight={600}>
                     Create Payroll
                 </Typography>
             </Box>

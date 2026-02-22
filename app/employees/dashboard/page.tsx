@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
-import AdminDashboard from "./admin-dashboard"
 import EmployeeDashboard from "./employee-dashboard"
+import { redirect } from "next/navigation"
 
 export default async function DashboardPage() {
   const supabase = await createSupabaseServer()
@@ -12,7 +12,7 @@ export default async function DashboardPage() {
   const role = user?.user_metadata?.role ?? "employee"
 
   if (role === "admin") {
-    return <AdminDashboard />
+    redirect("/admin/dashboard")
   }
 
   if (!user) {

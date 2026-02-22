@@ -25,7 +25,7 @@ export default function PayrollSection({
             <Grid container spacing={4} alignItems={"center"}>
                 {/* Left Insight */}
                 <Grid size={{xs: 12, md:5}}>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" fontWeight={600}>
                         {paidRate}%
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

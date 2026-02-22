@@ -43,7 +43,7 @@ export default function Register() {
                     borderRadius: 2,
                 }}
             >
-                <Typography variant="h4" fontWeight="bold" mb={3}>
+                <Typography variant="h4" fontWeight={600} mb={3}>
                     Register
                 </Typography>
                 <TextField

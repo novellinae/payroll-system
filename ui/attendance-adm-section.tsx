@@ -19,7 +19,7 @@ export default function AttendanceSection({
         <Card sx={{ borderRadius: 4, p:4}}>
             <Grid container spacing={4} alignItems={"center"}>
                 <Grid size = {{xs: 12, md:5}}>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" fontWeight={600}>
                         {data.attendance_rate}%
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

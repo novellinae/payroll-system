@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { Box, Typography } from "@mui/material";
-import PayrollTable, { type EmployeePayrollRow } from "./payroll-table";
+import PayrollTable from "./payroll-table";
 
 interface EmployeeRecord {
     id: string
@@ -45,7 +45,7 @@ export default async function EmployeePayrollPage() {
     if (!employee) {
         return (
             <Box sx={{ p: 4 }}>
-                <Typography variant="h5" fontWeight={700} mb={3}>
+                <Typography variant="h5" fontWeight={600} mb={3}>
                     My Payroll
                 </Typography>
                 <Typography color="text.secondary">Employee profile not found.</Typography>
@@ -75,7 +75,7 @@ export default async function EmployeePayrollPage() {
 
     return (
         <Box sx={{ p: 4 }}>
-            <Typography variant="h5" fontWeight={700} mb={3}>
+            <Typography variant="h5" fontWeight={600} mb={3}>
                 My Payroll
             </Typography>
             <PayrollTable data={payrolls ?? []} />

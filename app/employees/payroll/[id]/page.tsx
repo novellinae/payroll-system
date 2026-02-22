@@ -77,7 +77,7 @@ export default async function EmployeePayrollDetailPage({
 
   return (
     <Box sx={{ p: 4, minHeight: "100vh" }}>
-      <Typography variant="h5" fontWeight={700} mb={3}>
+      <Typography variant="h5" fontWeight={600} mb={3}>
         Payroll Detail
       </Typography>
 
@@ -109,7 +109,7 @@ export default async function EmployeePayrollDetailPage({
         {/* Earnings & Deductions */}
         <Grid container spacing={4}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Typography fontWeight={700} mb={2}>
+            <Typography fontWeight={600} mb={2}>
               Earnings
             </Typography>
 
@@ -127,7 +127,7 @@ export default async function EmployeePayrollDetailPage({
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <Typography fontWeight={700} mb={2}>
+            <Typography fontWeight={600} mb={2}>
               Deductions
             </Typography>
 
@@ -163,7 +163,7 @@ export default async function EmployeePayrollDetailPage({
 
           <Typography
             variant="h4"
-            fontWeight={800}
+            fontWeight={600}
             color="primary"
           >
             {formatCurrency(payroll.net_salary)}

@@ -6,7 +6,11 @@ import { createTheme, CssBaseline, ThemeProvider } from "@mui/material"
 import { useServerInsertedHTML } from "next/navigation"
 import React from "react"
 
-const theme = createTheme()
+const theme = createTheme({
+    typography: {
+        fontFamily: "var(--font-poppins), sans-serif",
+    },
+})
 
 export default function ThemeRegistry({
     children,

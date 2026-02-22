@@ -53,7 +53,7 @@ export default async function EditPayrollPage({
     return(
         <Box sx={{ width: "100%" }}>
             <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant="h5" fontWeight={600}>
                     Update {employeeName || "Employee"} Payroll ({periodLabel})
                 </Typography>
             </Box>

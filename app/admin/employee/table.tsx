@@ -1,6 +1,6 @@
 "use client"
 
-import { Table, TableBody, TableCell, TableHead, TablePagination, TableRow, TextField, Typography } from "@mui/material"
+import { Box, Stack, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, TextField, Typography } from "@mui/material"
 import { useRouter, useSearchParams } from "next/navigation"
 
 
@@ -44,69 +44,82 @@ export default function EmployeesTable({
 
     return (
         <>
-            {/*Employee Data*/}
-            <Typography variant="h3">Employee Data</Typography>
-                <div className="flex flex-col items-end">
-                   <TextField 
-                    placeholder="Search..."
-                    defaultValue={search}
-                    onChange={(e) =>
-                        updateParams({
-                            search: e.target.value,
-                            page:1,
-                        })
-                    }
-                    sx={{mb:2}}
-                    />
-                </div>
-            <Table>
-                {/* Table Header */}
-                <TableHead>
-                    <TableRow>
-                        <TableCell
-                            onClick={() =>
-                                updateParams({
-                                    sort: "first_name",
-                                    order: sort === "first_name" && !order ? "desc" : "asc",
-                                })
-                            }
-                        >
-                            Name
-                        </TableCell>
-                        <TableCell>Department</TableCell>
-                        <TableCell>Position</TableCell>
-                        <TableCell>Status</TableCell>
-                    </TableRow>
-                </TableHead>
+            <Box sx={{minHeight: "100vh", py:4, px: 4}}>
+                {/*Employee Data*/}
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent="space-between"
+                    alignItems="center"
+                    sx={{ width: "100%" }}
+                >
+                    <Typography variant="h4" fontWeight={600}>
+                    Employee Data
+                    </Typography>
 
-                {/* Table Body */}
-                <TableBody>
-                    {data.map((row) =>(
-                        <TableRow key={row.id} hover>
-                            <TableCell>{row.first_name} {row.last_name}</TableCell>
-                            <TableCell>{row.department}</TableCell>
-                            <TableCell>{row.position}</TableCell>
-                            <TableCell>{row.status}</TableCell>
+                    <div className="flex flex-col items-end">
+                    <TextField 
+                        placeholder="Search..."
+                        defaultValue={search}
+                        onChange={(e) =>
+                            updateParams({
+                                search: e.target.value,
+                                page:1,
+                            })
+                        }
+                        sx={{mb:2}}
+                        />
+                    </div>
+                </Stack>
+                <Table>
+                    {/* Table Header */}
+                    <TableHead>
+                        <TableRow>
+                            <TableCell
+                                onClick={() =>
+                                    updateParams({
+                                        sort: "first_name",
+                                        order: sort === "first_name" && !order ? "desc" : "asc",
+                                    })
+                                }
+                            >
+                                Name
+                            </TableCell>
+                            <TableCell>Department</TableCell>
+                            <TableCell>Position</TableCell>
+                            <TableCell>Status</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+                    </TableHead>
 
-            <TablePagination
-            component="div"
-            count={total}
-            page={page - 1}
-            onPageChange={(_, newPage) =>
-                updateParams({page: newPage + 1})
-            }
-            rowsPerPage={pageSize}
-            onRowsPerPageChange={(e) =>
-                updateParams({
-                    pageSize: parseInt(e.target.value, 10),
-                    page: 1,
-                })
-            }
-            />
+                    {/* Table Body */}
+                    <TableBody>
+                        {data.map((row) =>(
+                            <TableRow key={row.id} hover>
+                                <TableCell>{row.first_name} {row.last_name}</TableCell>
+                                <TableCell>{row.department}</TableCell>
+                                <TableCell>{row.position}</TableCell>
+                                <TableCell>{row.status}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+
+                <TablePagination
+                component="div"
+                count={total}
+                page={page - 1}
+                onPageChange={(_, newPage) =>
+                    updateParams({page: newPage + 1})
+                }
+                rowsPerPage={pageSize}
+                onRowsPerPageChange={(e) =>
+                    updateParams({
+                        pageSize: parseInt(e.target.value, 10),
+                        page: 1,
+                    })
+                }
+                />
+            </Box>
         </>
     )
 }

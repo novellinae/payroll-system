@@ -1,7 +1,7 @@
 import { getUser } from "@/lib/supabase/auth"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import DashboardLayoutClient from "./layout-client"
+import DashboardLayoutClient from "../../ui/layout-client"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { randomUUID } from "crypto"
 

@@ -102,14 +102,15 @@ export default async function PayrollAdminPage({
       .returns<Payroll[]>()
 
   return (
-    <Box sx={{ px: 4, py: 3 }}>
+    <Box sx={{ px: 4, py: 4, display: "flex", flexDirection: "column", alignItems: "center" }}>
       <Stack
         direction="row"
         spacing={2}
         justifyContent="space-between"
         alignItems="center"
+        sx={{ width: "100%" }}
       >
-        <Typography variant="h5" fontWeight={700}>
+        <Typography variant="h4" fontWeight={600}>
           Payroll Data
         </Typography>
 
@@ -118,14 +119,16 @@ export default async function PayrollAdminPage({
         </Button>
       </Stack>
 
-      <PayrollTable
-            data={data ?? []}
-            total={count ?? 0}
-            page={page}
-            pageSize={pageSize}
-            employees={employees ?? []}
-            periods={periods ?? []}
-      />
+      <Box sx={{ width: "100%", }}>
+        <PayrollTable
+          data={data ?? []}
+          total={count ?? 0}
+          page={page}
+          pageSize={pageSize}
+          employees={employees ?? []}
+          periods={periods ?? []}
+        />
+      </Box>
     </Box>
   )
 }
