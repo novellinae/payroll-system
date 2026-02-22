@@ -5,6 +5,26 @@ import PayrollTable, { type EmployeePayrollRow } from "./payroll-table";
 interface EmployeeRecord {
     id: string
 }
+
+interface PayrollPeriod {
+    month: number
+    year: number
+}
+
+interface EmployeePayrollRow {
+    id: string
+    gross_salary: number
+    net_salary: number
+    bonus: number | null
+    deduction: number | null
+    status: string | null
+    payroll_periods: PayrollPeriod | null
+}
+
+interface EmployeeRecord {
+    id: string
+}
+
 export default async function EmployeePayrollPage() {
     const supabase = await createSupabaseServer()
 
@@ -36,26 +56,28 @@ export default async function EmployeePayrollPage() {
     const { data: payrolls } = await supabase
     .from("payrolls")
     .select(`
-      id,
-          gross_salary,
-      net_salary,
-      status,
-            payroll_periods:payrolls_period_id_fkey (
+        id,
+        gross_salary,
+        net_salary,
+        bonus,
+        deduction,
+        status,
+        payroll_periods:payrolls_period_id_fkey (
         month,
         year
       )
     `)
-        .eq("employee_id", employee.id)
+    .eq("employee_id", employee.id)
     .eq("status", "paid")
-        .returns<EmployeePayrollRow[]>()
+    .returns<EmployeePayrollRow[]>()
     .order("created_at", { ascending: false })
+
 
     return (
         <Box sx={{ p: 4 }}>
             <Typography variant="h5" fontWeight={700} mb={3}>
                 My Payroll
             </Typography>
-
             <PayrollTable data={payrolls ?? []} />
     </Box>
   )
