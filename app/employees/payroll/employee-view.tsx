@@ -1,5 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { Chip, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
+import Link from "next/link"
 
 type Payroll = {
   id: string
@@ -55,6 +56,7 @@ export default async function EmployeePayrolll({
                     <TableCell>Deduction</TableCell>
                     <TableCell>Total Salary</TableCell>
                     <TableCell>Status</TableCell>
+                    <TableCell>Action</TableCell>
                 </TableRow>
             </TableHead>
 
@@ -80,6 +82,11 @@ export default async function EmployeePayrolll({
                                 label={row.status}
                                 color={row.status === "paid" ? "success" : "warning"}
                             /></TableCell>
+                        <TableCell>
+                            <Link href={`/employees/payroll/${row.id}`}>
+                                View Details
+                            </Link>
+                        </TableCell>
 
                     </TableRow>
                 ))}

@@ -9,9 +9,11 @@ interface PayrollSectionProps {
 export default function PayrollSection({
     data,
 }: PayrollSectionProps) {
-    const paid = data.payroll_summary.paid ?? 0
-    const processed = data.payroll_summary.processed ?? 0
-    const draft = data.payroll_summary.draft ?? 0
+    const payrollSummary = data.payroll_summary ?? {}
+
+    const paid = payrollSummary.paid ?? 0
+    const processed = payrollSummary.processed ?? 0
+    const draft = payrollSummary.draft ?? 0
 
     const total = paid + processed + draft
 
@@ -38,7 +40,7 @@ export default function PayrollSection({
                 </Grid>
 
                 <Grid size={{xs: 12, md:7}} display="flex" justifyContent={"center"}>
-                    <PayrollStatusPie data={data.payroll_summary}/>
+                    <PayrollStatusPie data={payrollSummary}/>
                 </Grid>
                 
             </Grid>

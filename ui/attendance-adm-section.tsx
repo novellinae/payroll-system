@@ -10,8 +10,10 @@ interface AttendanceSectionProps {
 export default function AttendanceSection({
     data,
 }: AttendanceSectionProps) {
-    const present = data.attendance_summary.present ?? 0
-    const absent = data.attendance_summary.absent ?? 0
+    const attendanceSummary = data.attendance_summary ?? {}
+
+    const present = attendanceSummary.present ?? 0
+    const absent = attendanceSummary.absent ?? 0
     
     return (
         <Card sx={{ borderRadius: 4, p:4}}>
@@ -35,7 +37,7 @@ export default function AttendanceSection({
                 </Grid>
 
                 <Grid size={{xs: 12, md: 7}} display={"flex"} justifyContent={"center"}>
-                    <AttendancePieChart data={data.attendance_summary}/>
+                    <AttendancePieChart data={attendanceSummary}/>
                 </Grid>
             </Grid>
         </Card>

@@ -2,17 +2,13 @@ export type PayrollStatus = "paid" | "processed" | "draft"
 export type PayrollSummary = Partial<Record<PayrollStatus, number>>
 
 export type AttendanceStatus = "present" | "absent" | "sick" | "leave"
-export type AttendanceSummary = Record<AttendanceStatus, number>
+export type AttendanceSummary = Partial<Record<AttendanceStatus, number>>
 
 export interface DashboardSummary {
   total_active_employees: number
-  payroll_summary: {
-    paid?: number
-    processed?: number
-    draft?: number
-  }
+  payroll_summary: PayrollSummary | null
   total_gross_salary: number
-  attendance_summary: AttendanceSummary
+  attendance_summary: AttendanceSummary | null
   attendance_rate: number
 }
 
