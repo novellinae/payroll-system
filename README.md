@@ -1,4 +1,5 @@
 # 🧾 Payroll Management System
+Mini Project #1
 
 A full-stack Payroll Management System built using **Next.js 16**, **Supabase**, **TanStack Table**, and **MUI**.
 
