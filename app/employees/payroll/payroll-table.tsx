@@ -16,6 +16,7 @@ type PayrollPeriod = {
 
 export type EmployeePayrollRow = {
     id: string
+    gross_salary: number
     net_salary: number
     status: string | null
     payroll_periods: PayrollPeriod | null
@@ -34,6 +35,9 @@ const columns = [
                 year: "numeric",
             })
         },
+    }),
+    columnHelper.accessor("gross_salary", {
+        header: "Gross Salary",
     }),
     columnHelper.accessor("net_salary", {
         header: "Net Salary",

@@ -37,6 +37,7 @@ export default async function EmployeePayrollPage() {
     .from("payrolls")
     .select(`
       id,
+          gross_salary,
       net_salary,
       status,
             payroll_periods:payrolls_period_id_fkey (
