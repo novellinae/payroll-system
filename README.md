@@ -17,7 +17,6 @@ This system provides secure payroll management with **Role-Based Access Control 
 ---
 
 ### **👑 Admin Features**
-- Manage Employees (CRUD)
 - Manage Payroll Records
 - Server-side pagination, sorting & filtering
 - Upload payslip PDFs to Supabase Storage
@@ -27,7 +26,7 @@ This system provides secure payroll management with **Role-Based Access Control 
 
 ### **👤 Employee Features**
 - View personal payroll records
-- Download payslip PDFs
+- View Attendance Information
 - Secure access to own data only
 
 ---
