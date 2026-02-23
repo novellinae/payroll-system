@@ -116,7 +116,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ## 📸 Screenshots
 
 ### Admin Dashboard
-![Admin Dashboard](./screenshots/admin.png)
+<img width="1822" height="911" alt="Payroll-sys (2)" src="https://github.com/user-attachments/assets/75dafb44-949f-4b68-b01e-6df15dfc8b7a" />
 
-### Employee Payroll View
-![Employee Payroll](./screenshots/employee.png)
+
+### Admin Payroll View
+<img width="1899" height="866" alt="Payroll-sys (4)" src="https://github.com/user-attachments/assets/bcb437fe-836d-46e6-8a2b-eb53e1659180" />
+
+### Employee Dashboard
+<img width="1898" height="926" alt="image" src="https://github.com/user-attachments/assets/25352e95-6fe7-41b9-84a2-993764457c74" />
+
+
