@@ -43,29 +43,82 @@ This system provides secure payroll management with **Role-Based Access Control 
 ```
 app/
 ├── (auth)/
-│   ├── login/page.tsx
-│   └── register/page.tsx
+│   ├── login/
+│   │   └── page.tsx
+│   └── register/
+│       └── page.tsx
+│
 ├── admin/
+│   ├── dashboard/
+│   │   ├── page.tsx
+│   │   ├── action.ts
+│   │   ├── dashboard-client.tsx
+│   │   └── types.ts
+│   │
 │   ├── employees/
 │   │   ├── page.tsx
-│   │   └── [id]/page.tsx
-│   └── payrolls/
+│   │   ├── columns.tsx
+│   │   ├── table.tsx
+│   │   └── action.ts
+│   │
+│   └── payroll/
 │       ├── page.tsx
-│       └── [id]/page.tsx
-├── employee/
-│   ├── payrolls/
+│       ├── columns.tsx
+│       ├── payroll-table.tsx
+│       ├── action.ts
+│       │
+│       ├── create/
+│       │   ├── page.tsx
+│       │   ├── create-payroll-form.tsx
+│       │   └── action.ts
+│       │
+│       └── [id]/
+│           ├── page.tsx
+│           └── edit-payroll-form.tsx
+│
+├── employees/   # employee role area
+│   ├── dashboard/
 │   │   ├── page.tsx
+│   │   ├── employee-dashboard-client.tsx
+│   │   └── action.ts
+│   │
+│   ├── payroll/
+│   │   ├── page.tsx
+│   │   ├── payroll-table.tsx
+│   │   ├── employee-view.tsx
 │   │   └── [id]/page.tsx
-│   └── profile/page.tsx
+│   │
+│   └── employee/
+│       ├── page.tsx
+│       ├── columns.tsx
+│       └── table.tsx
+│
 ├── layout.tsx
+├── layout-client.tsx
 ├── page.tsx
+├── provider.tsx
+├── ThemeRegistry.tsx
+├── globals.css
+│
 ├── lib/
-|   ├──── supabase/
-|   |     ├── client.ts
-|   |     ├── auth.ts
-|   |     └── server.ts
-|   ├──── queries/
-|   |     └── payrolls.ts
+│   ├── supabase/
+│   │   ├── client.ts
+│   │   ├── server.ts
+│   │   └── middleware.ts
+│   │
+│   ├── queries/
+│   │   ├── payroll.ts
+│   │   ├── employee.ts
+│   │   └── dashboard.ts
+│   │
+│   └── utils/
+│       ├── formatCurrency.ts
+│       └── constants.ts
+│
+├── ui/
+│
+public/
+README.md
 ```
 
 ## 📈 Performance & Security
