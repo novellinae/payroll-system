@@ -164,7 +164,22 @@ Create a `.env.local` file:
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+### Test Account
 
+👑 Admin:
+
+```
+email: admin@lkalbe.com
+password: 123456
+```
+🙍‍♂️ Employee:
+
+```
+email: employee@lkalbe.com
+password: 123456
+```
+
+---
 ## 📸 Screenshots
 
 ### Admin Dashboard
